@@ -13,7 +13,7 @@ import { useGLTF, useAnimations } from "@react-three/drei";
 export function TennisCourt(props) {
   const group = React.useRef();
   const { nodes, materials, animations } = useGLTF(
-    "/models/tennis_court_animation.glb"
+    `${import.meta.env.BASE_URL}models/tennis_court_animation.glb`
   );
   const { actions } = useAnimations(animations, group);
 
@@ -143,4 +143,4 @@ export function TennisCourt(props) {
   );
 }
 
-useGLTF.preload("/models/tennis_court_animation.glb");
+useGLTF.preload(`${import.meta.env.BASE_URL}models/tennis_court_animation.glb`);

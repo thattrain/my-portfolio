@@ -11,8 +11,8 @@ const interests = [
     desc: "I love playing tennis — it keeps me active and sharpens my competitive spirit.",
     gradient: "from-green-900/40 to-emerald-800/20",
     media: [
-      { type: "video", src: "/videos/tennis.mp4" },
-      { type: "video", src: "/videos/tennis2.mp4" },
+      { type: "video", src: `${import.meta.env.BASE_URL}videos/tennis.mp4` },
+      { type: "video", src: `${import.meta.env.BASE_URL}videos/tennis2.mp4` },
     ],
   },
   {
@@ -21,9 +21,9 @@ const interests = [
     desc: "Classical music helps me focus and find calm in the complexity of composition.",
     gradient: "from-purple-900/40 to-indigo-800/20",
     media: [
-      { type: "image", src: "/images/classical-music/classical-gallery1.jpg" },
-      { type: "image", src: "/images/classical-music/classical-gallery2.jpg" },
-      { type: "image", src: "/images/classical-music/classical-gallery3.jpg" },
+      { type: "image", src: `${import.meta.env.BASE_URL}images/classical-music/classical-gallery1.jpg` },
+      { type: "image", src: `${import.meta.env.BASE_URL}images/classical-music/classical-gallery2.jpg` },
+      { type: "image", src: `${import.meta.env.BASE_URL}images/classical-music/classical-gallery3.jpg` },
     ],
   },
 ];
