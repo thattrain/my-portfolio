@@ -51,12 +51,12 @@ const Hero = () => {
             </div>
 
             <p className="text-white-50 md:text-xl relative z-10 pointer-events-none">
-              Hi, I’m Adrian, a developer based in Croatia with a passion for
+              Hi, I’m Dat Tran, a backend developer based in Vietnam with a passion for
               code.
             </p>
 
             <Button
-              text="See My Work"
+              text="More about me"
               className="md:w-80 md:h-16 w-60 h-12"
               id="counter"
             />

@@ -1,7 +1,14 @@
 import { abilities } from "../constants";
+import TitleHeader from "../components/TitleHeader";
 
 const FeatureCards = () => (
-  <div className="w-full padding-x-lg">
+  <div className="w-full padding-x-lg mt-32">
+    <div className="md:px-10 px-5 mb-16">
+      <TitleHeader
+        title="My Qualities"
+        sub="💡 What I value in my work"
+      />
+    </div>
     <div className="mx-auto grid-3-cols">
       {abilities.map(({ imgPath, title, desc }) => (
         <div

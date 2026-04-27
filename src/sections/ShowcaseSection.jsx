@@ -1,84 +1,80 @@
 import { useRef } from "react";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
-gsap.registerPlugin(ScrollTrigger);
+import TitleHeader from "../components/TitleHeader";
+import MediaGallery from "../components/MediaGallery";
 
-const AppShowcase = () => {
+const interests = [
+  {
+    title: "Tennis",
+    desc: "I love playing tennis — it keeps me active and sharpens my competitive spirit.",
+    gradient: "from-green-900/40 to-emerald-800/20",
+    media: [
+      { type: "video", src: "/videos/tennis.mp4" },
+      { type: "video", src: "/videos/tennis2.mp4" },
+    ],
+  },
+  {
+    emoji: "🎵",
+    title: "Classical Music",
+    desc: "Classical music helps me focus and find calm in the complexity of composition.",
+    gradient: "from-purple-900/40 to-indigo-800/20",
+    media: [
+      { type: "image", src: "/images/classical-music/classical-gallery1.jpg" },
+      { type: "image", src: "/images/classical-music/classical-gallery2.jpg" },
+      { type: "image", src: "/images/classical-music/classical-gallery3.jpg" },
+    ],
+  },
+];
+
+const ShowcaseSection = () => {
   const sectionRef = useRef(null);
-  const rydeRef = useRef(null);
-  const libraryRef = useRef(null);
-  const ycDirectoryRef = useRef(null);
 
   useGSAP(() => {
-    // Animation for the main section
     gsap.fromTo(
-      sectionRef.current,
-      { opacity: 0 },
-      { opacity: 1, duration: 1.5 }
-    );
-
-    // Animations for each app showcase
-    const cards = [rydeRef.current, libraryRef.current, ycDirectoryRef.current];
-
-    cards.forEach((card, index) => {
-      gsap.fromTo(
-        card,
-        {
-          y: 50,
-          opacity: 0,
+      ".interest-card",
+      { y: 50, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        stagger: 0.2,
+        scrollTrigger: {
+          trigger: "#about",
+          start: "top center",
         },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          delay: 0.3 * (index + 1),
-          scrollTrigger: {
-            trigger: card,
-            start: "top bottom-=100",
-          },
-        }
-      );
-    });
+      }
+    );
   }, []);
 
   return (
-    <div id="work" ref={sectionRef} className="app-showcase">
-      <div className="w-full">
-        <div className="showcaselayout">
-          <div ref={rydeRef} className="first-project-wrapper">
-            <div className="image-wrapper">
-              <img src="/images/project1.png" alt="Ryde App Interface" />
-            </div>
-            <div className="text-content">
-              <h2>
-                On-Demand Rides Made Simple with a Powerful, User-Friendly App
-                called Ryde
-              </h2>
-              <p className="text-white-50 md:text-xl">
-                An app built with React Native, Expo, & TailwindCSS for a fast,
-                user-friendly experience.
+    <div id="about" ref={sectionRef} className="section-padding">
+      <div className="w-full md:px-10 px-5">
+        <TitleHeader
+          title="Beyond the Code"
+          sub="🎯 A glimpse into what drives me outside of work"
+        />
+        <div className="grid md:grid-cols-2 grid-cols-1 gap-8 mt-16">
+          {/* Tennis */}
+          <div className="interest-card relative card-border rounded-2xl overflow-hidden hover:scale-[1.02] transition-transform duration-300">
+            <MediaGallery media={interests[0].media} className="w-full h-[52rem]" />
+            <div className="absolute top-0 inset-x-0 px-8 py-7 bg-gradient-to-b from-black/70 to-transparent z-30 pointer-events-none">
+              <h3 className="text-2xl font-semibold text-white">Tennis</h3>
+              <p className="text-white/60 leading-relaxed mt-2 text-sm max-w-xs">
+                I love playing tennis — it keeps me active and sharpens my competitive spirit.
               </p>
             </div>
           </div>
 
-          <div className="project-list-wrapper overflow-hidden">
-            <div className="project" ref={libraryRef}>
-              <div className="image-wrapper bg-[#FFEFDB]">
-                <img
-                  src="/images/project2.png"
-                  alt="Library Management Platform"
-                />
-              </div>
-              <h2>The Library Management Platform</h2>
-            </div>
-
-            <div className="project" ref={ycDirectoryRef}>
-              <div className="image-wrapper bg-[#FFE7EB]">
-                <img src="/images/project3.png" alt="YC Directory App" />
-              </div>
-              <h2>YC Directory - A Startup Showcase App</h2>
+          {/* Classical Music */}
+          <div className="interest-card relative card-border rounded-2xl overflow-hidden hover:scale-[1.02] transition-transform duration-300">
+            <MediaGallery media={interests[1].media} className="w-full h-[52rem]" />
+            <div className="absolute top-0 inset-x-0 px-8 py-7 bg-gradient-to-b from-black/70 to-transparent z-30 pointer-events-none">
+              <h3 className="text-2xl font-semibold text-white">Classical Music</h3>
+              <p className="text-white/60 leading-relaxed mt-2 text-sm max-w-xs">
+                Classical music helps me focus and find calm in the complexity of composition.
+              </p>
             </div>
           </div>
         </div>
@@ -87,4 +83,4 @@ const AppShowcase = () => {
   );
 };
 
-export default AppShowcase;
+export default ShowcaseSection;

@@ -1,7 +1,7 @@
 const navLinks = [
   {
-    name: "Work",
-    link: "#work",
+    name: "About",
+    link: "#about",
   },
   {
     name: "Experience",
@@ -12,8 +12,8 @@ const navLinks = [
     link: "#skills",
   },
   {
-    name: "Testimonials",
-    link: "#testimonials",
+    name: "Blog",
+    link: "/blog",
   },
 ];
 
@@ -29,10 +29,10 @@ const words = [
 ];
 
 const counterItems = [
-  { value: 15, suffix: "+", label: "Years of Experience" },
-  { value: 200, suffix: "+", label: "Satisfied Clients" },
-  { value: 108, suffix: "+", label: "Completed Projects" },
-  { value: 90, suffix: "%", label: "Client Retention Rate" },
+  { value: 4, suffix: "+", label: "Years of Experience", detail: "Building backend systems since September 2021 across infrastructure, microservices, and data engineering." },
+  { value: 3, suffix: "", label: "Companies", detail: "Vietnix (System Admin), Viettel High Tech (Software Engineer), SAP (Software Engineer)." },
+  { value: 15, suffix: "K", label: "Max TPS at SAP", detail: "Peak throughput of the ETL data synchronization service at SAP SuccessFactors." },
+  { value: 2, suffix: "", label: "Awards", detail: "Employee of the Year and Viettel Insight Eye Copyright Certificate at Viettel High Tech." },
 ];
 
 const logoIconsList = [
@@ -91,24 +91,34 @@ const abilities = [
 
 const techStackImgs = [
   {
-    name: "React Developer",
-    imgPath: "/images/logos/react.png",
+    name: "Agentic Frameworks",
+    imgPath: "/images/logos/langgraph.svg",
+    detail:
+      "Build multi-agent workflows with LangGraph & LangChain. Integrate LLMs into production pipelines with tracing via LangFuse.",
   },
   {
-    name: "Python Developer",
-    imgPath: "/images/logos/python.svg",
+    name: "Backend Architecture",
+    imgPath: "/images/logos/spring.svg",
+    detail:
+      "Design high-throughput services with Spring Boot & Java. Handle multithreading, concurrency, and ETL pipelines processing 15K+ TPS.",
   },
   {
-    name: "Backend Developer",
-    imgPath: "/images/logos/node.png",
+    name: "Event-Driven Systems",
+    imgPath: "/images/logos/kafka.svg",
+    detail:
+      "Architect event-driven microservices with Kafka. Build real-time data pipelines and async communication between distributed services.",
   },
   {
-    name: "Interactive Developer",
-    imgPath: "/images/logos/three.png",
+    name: "Observability",
+    imgPath: "/images/logos/prometheus.svg",
+    detail:
+      "Set up full observability stacks: Prometheus for metrics, Tempo for traces, Loki for logs, Pyroscope for profiling, and ELK for search.",
   },
   {
-    name: "Project Manager",
-    imgPath: "/images/logos/git.svg",
+    name: "Infrastructure",
+    imgPath: "/images/logos/linux.svg",
+    detail:
+      "Manage Linux servers, VMware environments, and shell scripting. Performance testing with K6 and database tuning with PostgreSQL & ScyllaDB.",
   },
 ];
 
@@ -147,39 +157,45 @@ const techStackIcons = [
 
 const expCards = [
   {
-    review: "Adrian brought creativity and technical expertise to the team, significantly improving our frontend performance. His work has been invaluable in delivering faster experiences.",
-    imgPath: "/images/exp1.png",
-    logoPath: "/images/logo1.png",
-    title: "Frontend Developer",
-    date: "January 2023 - Present",
+    imgPath: "/images/logos/logo-sap.jpeg",
+    company: "SAP",
+    title: "Software Engineer",
+    date: "October 2025 - Present",
+    focus: "Data Engineering & AI development",
+    techStack: ["Spring", "Java", "Multithreading", "Concurrency", "SAP Hana", "Kafka", "LangChain", "LangGraph", "LangFuse"],
     responsibilities: [
-      "Developed and maintained user-facing features for the Hostinger website.",
-      "Collaborated closely with UI/UX designers to ensure seamless user experiences.",
-      "Optimized web applications for maximum speed and scalability.",
+      "Develop and maintain scalable ETL services at SAP SuccessFactors to synchronize data across platforms, reaching 15,000 TPS max throughput.",
+      "Optimize processing performance using multithreaded Java, improving throughput and reducing latency in large-scale data flows.",
+      "Ensure system reliability with fault-tolerant design patterns, including retry mechanisms, idempotency, and error handling strategies.",
+      "Develop an AI agent for SuccessFactors using LangChain, LangGraph, and LangFuse for orchestration, workflow management, and observability.",
     ],
   },
   {
-    review: "Adrian’s contributions to Docker's web applications have been outstanding. He approaches challenges with a problem-solving mindset.",
-    imgPath: "/images/exp2.png",
-    logoPath: "/images/logo2.png",
-    title: "Full Stack Developer",
-    date: "June 2020 - December 2023",
+    imgPath: "/images/logos/logo-vietttel.jpg",
+    company: "Viettel High Tech",
+    title: "Software Engineer",
+    date: "October 2022 - October 2025",
+    focus: "Microservices & Platform Engineering",
+    techStack: ["Spring Boot", "PostgreSQL", "ScyllaDB", "Netty", "Kafka", "K6", "ELK", "Prometheus", "Tempo", "Loki", "Pyroscope"],
     responsibilities: [
-      "Led the development of Docker's web applications, focusing on scalability.",
-      "Worked with backend engineers to integrate APIs seamlessly with the frontend.",
-      "Contributed to open-source projects that were used with the Docker ecosystem.",
+      "Designed and implemented video streaming for Camera Platform with Netty using HLS and RTSP protocols; designed and maintained RESTful microservices with Spring Boot.",
+      "Designed and implemented event and recording video management microservices to handled events and records from surveillance cameras.",
+      "Applied microservice best practices including API gateway, CQRS, and Event Sourcing; integrated CI/CD pipelines with GitLab Runner, Jenkins, and Helm.",
+      "Set up full observability stacks (ELK, Prometheus, Grafana, Tempo, Loki) and deployed microservices to Kubernetes across dev, staging, and production environments.",
     ],
   },
   {
-    review: "Adrian’s work on Appwrite’s mobile app brought a high level of quality and efficiency. He delivered solutions that enhanced our mobile experience & meet our product goals.",
-    imgPath: "/images/exp3.png",
-    logoPath: "/images/logo3.png",
-    title: "React Native Developer",
-    date: "March 2019 - May 2020",
+    imgPath: "/images/logos/logo-vietnix.png",
+    company: "Vietnix",
+    title: "System Engineer",
+    date: "September 2021 - June 2022",
+    focus: "Infrastructure & Server Management",
+    techStack: ["VMware Center", "Linux", "Windows Server", "Shell Scripting"],
     responsibilities: [
-      "Built cross-platform mobile apps using React Native, integrating with Appwrite's backend services.",
-      "Improved app performance and user experience through code optimization and testing.",
-      "Coordinated with the product team to implement features based on feedback.",
+      "Managed and maintained server infrastructure at Vietnix, ensuring high availability and security of hosted services.",
+      "Installed, configured, and administered Linux and Windows servers, including hosting control panels (cPanel, DirectAdmin, aaPanel).",
+      "Administered virtual private servers via type 1 hypervisors (Proxmox, VMware ESXi) and conducted regular system audits and performance monitoring.",
+      "Wrote Linux shell scripts to automate routine server administration and maintenance tasks.",
     ],
   },
 ];
@@ -204,42 +220,42 @@ const testimonials = [
     name: "Esther Howard",
     mentions: "@estherhoward",
     review:
-      "I can’t say enough good things about Adrian. He was able to take our complex project requirements and turn them into a seamless, functional website. His problem-solving abilities are outstanding.",
+      "I can’t say enough good things about Dat. He was able to take our complex project requirements and turn them into a seamless, functional website. His problem-solving abilities are outstanding.",
     imgPath: "/images/client1.png",
   },
   {
     name: "Wade Warren",
     mentions: "@wadewarren",
     review:
-      "Working with Adrian was a fantastic experience. He transformed our outdated website into a modern, user-friendly platform. His attention to detail and commitment to quality are unmatched. Highly recommend him for any web dev projects.",
+      "Working with Dat was a fantastic experience. He transformed our outdated website into a modern, user-friendly platform. His attention to detail and commitment to quality are unmatched. Highly recommend him for any web dev projects.",
     imgPath: "/images/client3.png",
   },
   {
     name: "Guy Hawkins",
     mentions: "@guyhawkins",
     review:
-      "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
+      "Collaborating with Dat was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Dat's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Dat is the ideal partner.",
     imgPath: "/images/client2.png",
   },
   {
     name: "Marvin McKinney",
     mentions: "@marvinmckinney",
     review:
-      "Adrian was a pleasure to work with. He turned our outdated website into a fresh, intuitive platform that’s both modern and easy to navigate. Fantastic work overall.",
+      "Dat was a pleasure to work with. He turned our outdated website into a fresh, intuitive platform that’s both modern and easy to navigate. Fantastic work overall.",
     imgPath: "/images/client5.png",
   },
   {
     name: "Floyd Miles",
     mentions: "@floydmiles",
     review:
-      "Adrian’s expertise in web development is truly impressive. He delivered a robust and scalable solution for our e-commerce site, and our online sales have significantly increased since the launch. He’s a true professional!",
+      "Dat’s expertise in web development is truly impressive. He delivered a robust and scalable solution for our e-commerce site, and our online sales have significantly increased since the launch. He’s a true professional!",
     imgPath: "/images/client4.png",
   },
   {
     name: "Albert Flores",
     mentions: "@albertflores",
     review:
-      "Adrian was a pleasure to work with. He understood our requirements perfectly and delivered a website that exceeded our expectations. His skills in both frontend and backend dev are top-notch.",
+      "Dat was a pleasure to work with. He understood our requirements perfectly and delivered a website that exceeded our expectations. His skills in both frontend and backend dev are top-notch.",
     imgPath: "/images/client6.png",
   },
 ];
@@ -248,18 +264,17 @@ const socialImgs = [
   {
     name: "insta",
     imgPath: "/images/insta.png",
+    link: "https://www.instagram.com/dattrannnnnn/",
   },
   {
     name: "fb",
     imgPath: "/images/fb.png",
-  },
-  {
-    name: "x",
-    imgPath: "/images/x.png",
+    link: "https://www.facebook.com/dat.tran.702270/",
   },
   {
     name: "linkedin",
     imgPath: "/images/linkedin.png",
+    link: "https://www.linkedin.com/in/dat-tran-b7197923a/",
   },
 ];
 
@@ -269,8 +284,6 @@ export {
   logoIconsList,
   counterItems,
   expCards,
-  expLogos,
-  testimonials,
   socialImgs,
   techStackIcons,
   techStackImgs,

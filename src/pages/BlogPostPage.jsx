@@ -38,8 +38,8 @@ const BlogPostPage = () => {
   });
 
   return (
-    <main className="min-h-screen pt-32 pb-20 px-5 md:px-10">
-      <article className="max-w-[700px] mx-auto">
+    <main className="min-h-screen flex flex-col pt-32 pb-20 px-5 md:px-10">
+      <article className="max-w-[700px] mx-auto flex-1">
         <Link
           to="/blog"
           className="inline-flex items-center text-[#839cb5] hover:text-white transition-colors mb-8"

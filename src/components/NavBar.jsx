@@ -1,55 +1,78 @@
 import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router";
 
 import { navLinks } from "../constants";
 
 const NavBar = () => {
-  // track if the user has scrolled down the page
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
   useEffect(() => {
-    // create an event listener for when the user scrolls
     const handleScroll = () => {
-      // check if the user has scrolled down at least 10px
-      // if so, set the state to true
       const isScrolled = window.scrollY > 10;
       setScrolled(isScrolled);
     };
 
-    // add the event listener to the window
     window.addEventListener("scroll", handleScroll);
-
-    // cleanup the event listener when the component is unmounted
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const renderNavLink = ({ link, name }) => {
+    const isAnchor = link.startsWith("#");
+
+    if (isAnchor && isHomePage) {
+      return (
+        <a href={link}>
+          <span>{name}</span>
+          <span className="underline" />
+        </a>
+      );
+    }
+
+    if (isAnchor && !isHomePage) {
+      return (
+        <Link to={`/${link}`}>
+          <span>{name}</span>
+          <span className="underline" />
+        </Link>
+      );
+    }
+
+    return (
+      <Link to={link}>
+        <span>{name}</span>
+        <span className="underline" />
+      </Link>
+    );
+  };
 
   return (
     <header className={`navbar ${scrolled ? "scrolled" : "not-scrolled"}`}>
       <div className="inner">
-        <a href="#hero" className="logo">
-          Adrian JSM
-        </a>
+        {isHomePage ? (
+          <a href="#hero" className="logo">
+            Dat Tran
+          </a>
+        ) : (
+          <Link to="/" className="logo">
+            Dat Tran
+          </Link>
+        )}
 
-        <nav className="desktop">
+        <nav className="desktop flex-1 justify-center">
           <ul>
             {navLinks.map(({ link, name }) => (
               <li key={name} className="group">
-                <a href={link}>
-                  <span>{name}</span>
-                  <span className="underline" />
-                </a>
+                {renderNavLink({ link, name })}
               </li>
             ))}
           </ul>
         </nav>
 
-        <a href="#contact" className="contact-btn group">
-          <div className="inner">
-            <span>Contact me</span>
-          </div>
-        </a>
       </div>
     </header>
   );
-}
+};
 
 export default NavBar;

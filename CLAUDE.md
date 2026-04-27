@@ -13,29 +13,21 @@ npm run lint      # Run ESLint
 
 No test suite is configured.
 
-## Environment Variables
-
-Copy and populate `.env` in the project root for the contact form to function:
-
-```env
-VITE_APP_EMAILJS_SERVICE_ID=
-VITE_APP_EMAILJS_TEMPLATE_ID=
-VITE_APP_EMAILJS_PUBLIC_KEY=
-```
-
-These are consumed via `import.meta.env` in `src/sections/Contact.jsx`.
-
 ## Architecture
 
-Single-page React 19 app built with Vite. No routing — the page is one long scroll of sections.
+React 19 app built with Vite. Uses React Router v7 (declarative mode) for page routing.
 
-**Entry point:** `src/main.jsx` → `src/App.jsx` renders all sections in order.
+**Routing:** Three routes: `/` (homepage scroll), `/blog` (post list), `/blog/:slug` (post reader). SPA fallback required on production server (all paths → `index.html`). `BrowserRouter` wraps the app in `src/main.jsx`.
 
-**Section layout** (`src/sections/`): Each file is a full-width page section. Order in `App.jsx` matches the visual page order: `Hero → ShowcaseSection → LogoShowcase → FeatureCards → Experience → TechStack → Testimonials → Contact → Footer`.
+**Entry point:** `src/main.jsx` → `src/App.jsx` defines routes and renders `NavBar` + `ScrollToTop` above all pages.
 
-**3D rendering** (`src/components/models/`): Three.js scenes are encapsulated in React Three Fiber `<Canvas>` components. Two experiences exist:
-- `hero_models/HeroExperience.jsx` — animated room scene with particles and lighting
-- `contact/ContactExperience.jsx` — rotating computer model
+**Homepage** (`src/pages/HomePage.jsx`): Single-page scroll of sections. Order matches visual page order: `Hero → ShowcaseSection → LogoShowcase → FeatureCards → Experience → TechStack → Footer`.
+
+**Blog** (`src/pages/BlogListPage.jsx`, `src/pages/BlogPostPage.jsx`): Markdown posts in `src/content/blog/*.md` with YAML frontmatter. A custom Vite plugin (`src/plugins/vite-plugin-blog-markdown.js`) transforms `.md` files to JS modules at build time using gray-matter + unified/remark/rehype + Shiki for syntax highlighting. Blog utilities in `src/utils/blog.js`.
+
+**Section layout** (`src/sections/`): Each file is a full-width page section.
+
+**3D rendering** (`src/components/models/`): Three.js scenes are encapsulated in React Three Fiber `<Canvas>` components. The hero experience lives in `hero_models/HeroExperience.jsx` — animated room scene with particles and lighting.
 
 GLB model files live in `public/models/`. `useMediaQuery` (react-responsive) controls responsive 3D behavior (scale, zoom) within these components.
 
@@ -45,4 +37,4 @@ GLB model files live in `public/models/`. `useMediaQuery` (react-responsive) con
 
 **Styling:** Tailwind CSS v4 (configured via `@tailwindcss/vite` plugin — no `tailwind.config.js`). Custom utility classes and CSS variables are defined in `src/index.css`.
 
-**Reusable UI components** (`src/components/`): `Button`, `GlowCard`, `TitleHeader`, `AnimatedCounter`, `ExpContent`, `NavBar`.
+**Reusable UI components** (`src/components/`): `Button`, `GlowCard`, `TitleHeader`, `AnimatedCounter`, `ExpContent`, `NavBar`, `BlogCard`, `MarkdownRenderer`.

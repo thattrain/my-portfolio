@@ -9,7 +9,7 @@ html,
 body {
   width: 100dvw;
   overflow-x: hidden;
-  background-color: black;
+  background-color: #0a0f1e;
   color: white;
   scroll-behavior: smooth;
   font-family: "Mona Sans", sans-serif;
@@ -22,11 +22,11 @@ section {
 @theme {
   --font-sans: "Mona Sans", sans-serif;
   --color-white-50: #d9ecff;
-  --color-black-50: #1c1c21;
+  --color-black-50: #0d1a2e;
   --color-black-100: #0e0e10;
-  --color-black-200: #282732;
-  --color-blue-50: #839cb5;
-  --color-blue-100: #2d2d38;
+  --color-black-200: #001a3a;
+  --color-blue-50: #4A90D9;
+  --color-blue-100: #003580;
 }
 
 @layer utilities {
@@ -243,11 +243,11 @@ section {
   }
 
   .timeline {
-    @apply absolute z-30 h-[110%] -top-10 w-14 md:w-28 bg-black;
+    @apply absolute z-20 h-[110%] -top-10 w-1 bg-[#0a0f1e];
   }
 
   .timeline-logo {
-    @apply md:size-20 size-10 flex-none rounded-full flex justify-center items-center md:-translate-y-7 border border-black-50 bg-black-100;
+    @apply md:size-20 size-10 flex-none rounded-full flex justify-center items-center md:-translate-y-7 border border-[#4A90D9]/30 bg-black-200 text-white relative z-30;
   }
 
   .exp-card-wrapper {
@@ -259,7 +259,7 @@ section {
   }
 
   .tech-card-animated-bg {
-    @apply absolute left-0 bottom-[-100%] w-full h-full bg-[#2D3240] group-hover:bottom-0 transition-all duration-700;
+    @apply absolute left-0 bottom-[-100%] w-full h-full bg-[#001a3a] group-hover:bottom-0 transition-all duration-700;
   }
 
   .tech-card-content {
@@ -320,6 +320,77 @@ section {
       }
     }
   }
+
+  .prose {
+    @apply text-white-50 leading-relaxed text-lg;
+
+    h1 {
+      @apply text-3xl font-bold text-white mt-12 mb-4;
+    }
+    h2 {
+      @apply text-2xl font-semibold text-white mt-10 mb-4;
+    }
+    h3 {
+      @apply text-xl font-semibold text-white mt-8 mb-3;
+    }
+    h4 {
+      @apply text-lg font-semibold text-white mt-6 mb-2;
+    }
+
+    p {
+      @apply mb-5;
+    }
+
+    a {
+      @apply text-blue-50 underline underline-offset-2 hover:text-white transition-colors;
+    }
+
+    strong {
+      @apply text-white font-semibold;
+    }
+
+    em {
+      @apply italic;
+    }
+
+    ul {
+      @apply list-disc pl-6 mb-5 flex flex-col gap-2;
+    }
+    ol {
+      @apply list-decimal pl-6 mb-5 flex flex-col gap-2;
+    }
+
+    blockquote {
+      @apply border-l-4 border-blue-50 pl-5 py-1 my-5 italic text-[#839cb5];
+    }
+
+    pre {
+      @apply rounded-lg p-5 my-6 overflow-x-auto text-sm leading-relaxed;
+    }
+
+    :not(pre) > code {
+      @apply bg-[#1c1c21] text-[#d9ecff] px-1.5 py-0.5 rounded text-[0.9em];
+    }
+
+    hr {
+      @apply border-[#282732] my-10;
+    }
+
+    img {
+      @apply rounded-lg my-6 max-w-full;
+    }
+
+    table {
+      @apply w-full my-6 text-sm;
+
+      th {
+        @apply text-left text-white font-semibold border-b border-[#282732] pb-2 px-3;
+      }
+      td {
+        @apply border-b border-[#282732] py-2 px-3;
+      }
+    }
+  }
 }
 
 /* Hero text slider starts */
@@ -368,11 +439,11 @@ section {
   width: 2px;
   background: linear-gradient(
     0deg,
-    rgba(69, 222, 196, 0) 0%,
-    #62e0ff 25%,
-    #52aeff 37.51%,
-    #fd5c79 62.83%,
-    #6d45ce 92.91%
+    rgba(0, 87, 168, 0) 0%,
+    #4A90D9 25%,
+    #0057A8 37.51%,
+    #4A90D9 62.83%,
+    #FFD700 92.91%
   );
 }
 
