@@ -33,7 +33,7 @@ const words = [
 const counterItems = [
   { value: 4, suffix: "+", label: "Years of Experience", detail: "Building backend systems since September 2021 across infrastructure, microservices, and data engineering." },
   { value: 3, suffix: "", label: "Companies", detail: "Vietnix (System Admin), Viettel High Tech (Software Engineer), SAP (Software Engineer)." },
-  { value: 15, suffix: "K", label: "Max TPS at SAP", detail: "Peak throughput of the ETL data synchronization service at SAP SuccessFactors." },
+  { value: 100, suffix: "M", label: "Data Records/Day at SAP", detail: "Peak daily throughput of the ETL data synchronization service at SAP SuccessFactors." },
   { value: 2, suffix: "", label: "Awards", detail: "Employee of the Year and Viettel Insight Eye Copyright Certificate at Viettel High Tech." },
 ];
 
@@ -102,7 +102,7 @@ const techStackImgs = [
     name: "Backend Architecture",
     imgPath: `${B}images/logos/spring.svg`,
     detail:
-      "Design high-throughput services with Spring Boot & Java. Handle multithreading, concurrency, and ETL pipelines processing 15K+ TPS.",
+      "Design high-throughput services with Spring Boot & Java. Handle multithreading, concurrency, and ETL pipelines delivering 100M+ data records per day.",
   },
   {
     name: "Event-Driven Systems",
@@ -166,7 +166,7 @@ const expCards = [
     focus: "Data Engineering & AI development",
     techStack: ["Spring", "Java", "Multithreading", "Concurrency", "SAP Hana", "Kafka", "LangChain", "LangGraph", "LangFuse"],
     responsibilities: [
-      "Develop and maintain scalable ETL services at SAP SuccessFactors to synchronize data across platforms, reaching 15,000 TPS max throughput.",
+      "Develop and maintain scalable ETL services at SAP SuccessFactors to synchronize data across platforms, delivering 100M data records per day at peak.",
       "Optimize processing performance using multithreaded Java, improving throughput and reducing latency in large-scale data flows.",
       "Ensure system reliability with fault-tolerant design patterns, including retry mechanisms, idempotency, and error handling strategies.",
       "Develop an AI agent for SuccessFactors using LangChain, LangGraph, and LangFuse for orchestration, workflow management, and observability.",
