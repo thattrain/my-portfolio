@@ -22,7 +22,7 @@ jobs:
 
       - run: npm run build
         env:
-          VITE_OPENROUTER_API_KEY: ${{ secrets.VITE_OPENROUTER_API_KEY }}
+          VITE_CHAT_PROXY_URL: ${{ secrets.VITE_CHAT_PROXY_URL }}
 
       - run: cp dist/index.html dist/404.html
 

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import Markdown from "react-markdown";
 
-const API_URL = "https://openrouter.ai/api/v1/chat/completions";
+const API_URL = import.meta.env.VITE_CHAT_PROXY_URL;
 const MODELS = [
   "nvidia/nemotron-3-nano-30b-a3b:free",
   "nvidia/nemotron-nano-9b-v2:free",
@@ -81,16 +81,15 @@ export default function ChatWidget({ systemPrompt, storageKey, welcomeMessage, c
     setInput("");
     setIsStreaming(true);
 
-    const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY;
-    if (!apiKey) {
-      setMessages([...updatedMessages, { role: "assistant", content: "Chat is not configured. Missing API key." }]);
-      setIsStreaming(false);
-      return;
-    }
-
     abortControllerRef.current?.abort();
     const controller = new AbortController();
     abortControllerRef.current = controller;
+
+    if (!API_URL) {
+      setMessages([...updatedMessages, { role: "assistant", content: "Chat is not configured." }]);
+      setIsStreaming(false);
+      return;
+    }
 
     const apiMessages = [{ role: "system", content: systemPrompt }, ...updatedMessages];
 
@@ -99,7 +98,7 @@ export default function ChatWidget({ systemPrompt, storageKey, welcomeMessage, c
       for (const model of MODELS) {
         response = await fetch(API_URL, {
           method: "POST",
-          headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}` },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ model, messages: apiMessages, stream: true }),
           signal: controller.signal,
         });
