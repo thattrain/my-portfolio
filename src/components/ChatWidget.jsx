@@ -27,17 +27,24 @@ export default function ChatWidget({ systemPrompt, storageKey, welcomeMessage, c
   const [showTooltip, setShowTooltip] = useState(false);
   const messagesContainerRef = useRef(null);
   const inputRef = useRef(null);
+  const abortControllerRef = useRef(null);
+
+  const visitedKey = `${storageKey}-visited`;
 
   useEffect(() => {
-    const hasVisited = sessionStorage.getItem("portfolio-chat-visited");
+    const hasVisited = sessionStorage.getItem(visitedKey);
     if (!hasVisited) {
       const timer = setTimeout(() => setShowTooltip(true), 1500);
       const hideTimer = setTimeout(() => {
         setShowTooltip(false);
-        sessionStorage.setItem("portfolio-chat-visited", "true");
+        sessionStorage.setItem(visitedKey, "true");
       }, 6000);
       return () => { clearTimeout(timer); clearTimeout(hideTimer); };
     }
+  }, [visitedKey]);
+
+  useEffect(() => {
+    return () => { abortControllerRef.current?.abort(); };
   }, []);
 
   useEffect(() => {
@@ -81,6 +88,10 @@ export default function ChatWidget({ systemPrompt, storageKey, welcomeMessage, c
       return;
     }
 
+    abortControllerRef.current?.abort();
+    const controller = new AbortController();
+    abortControllerRef.current = controller;
+
     const apiMessages = [{ role: "system", content: systemPrompt }, ...updatedMessages];
 
     try {
@@ -90,17 +101,20 @@ export default function ChatWidget({ systemPrompt, storageKey, welcomeMessage, c
           method: "POST",
           headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}` },
           body: JSON.stringify({ model, messages: apiMessages, stream: true }),
+          signal: controller.signal,
         });
-        if (response.ok) {
-          console.log(`[ChatWidget] Using model: ${model}`);
-          break;
-        }
-        console.log(`[ChatWidget] Model ${model} failed (${response.status}), trying next...`);
+        if (response.ok) break;
         if (response.status !== 429 && response.status !== 503) break;
       }
 
       if (!response.ok) {
         setMessages([...updatedMessages, { role: "assistant", content: "Sorry, all models are busy right now. Please try again in a moment." }]);
+        setIsStreaming(false);
+        return;
+      }
+
+      if (!response.body) {
+        setMessages([...updatedMessages, { role: "assistant", content: "Streaming not supported in this environment." }]);
         setIsStreaming(false);
         return;
       }
@@ -132,8 +146,10 @@ export default function ChatWidget({ systemPrompt, storageKey, welcomeMessage, c
       if (!assistantContent) {
         setMessages([...updatedMessages, { role: "assistant", content: "I didn't get a response. Please try again." }]);
       }
-    } catch {
-      setMessages([...updatedMessages, { role: "assistant", content: "Unable to connect. Please check your internet connection." }]);
+    } catch (err) {
+      if (err.name !== "AbortError") {
+        setMessages([...updatedMessages, { role: "assistant", content: "Unable to connect. Please check your internet connection." }]);
+      }
     } finally {
       setIsStreaming(false);
     }
@@ -166,7 +182,7 @@ export default function ChatWidget({ systemPrompt, storageKey, welcomeMessage, c
           </div>
         )}
         <button
-          onClick={() => { setIsOpen(true); setShowTooltip(false); sessionStorage.setItem("portfolio-chat-visited", "true"); }}
+          onClick={() => { setIsOpen(true); setShowTooltip(false); sessionStorage.setItem(visitedKey, "true"); }}
           className="w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:scale-110 cursor-pointer"
           style={{
             background: "linear-gradient(135deg, #4A90D9, #003580)",
@@ -213,14 +229,14 @@ export default function ChatWidget({ systemPrompt, storageKey, welcomeMessage, c
         <div className="w-2.5 h-2.5 rounded-full" style={{ background: "#4A90D9", boxShadow: "0 0 8px rgba(74, 144, 217, 0.6)" }} />
         <span className="text-sm font-semibold flex-1" style={{ color: "#d9ecff" }}>Ask me anything</span>
         <button
-          onClick={() => { setMessages([]); sessionStorage.removeItem(storageKey); }}
+          onClick={() => { abortControllerRef.current?.abort(); setMessages([]); sessionStorage.removeItem(storageKey); }}
           className="text-xl leading-none cursor-pointer hover:opacity-70 transition-opacity"
           style={{ color: "#4A90D9" }}
           aria-label="Reset chat"
           title="New conversation"
         >↺</button>
         <button
-          onClick={() => setIsOpen(false)}
+          onClick={() => { abortControllerRef.current?.abort(); setIsOpen(false); }}
           className="text-xl leading-none cursor-pointer hover:opacity-70 transition-opacity"
           style={{ color: "#4A90D9" }}
           aria-label="Close chat"

@@ -21,6 +21,8 @@ jobs:
       - run: npm ci
 
       - run: npm run build
+        env:
+          VITE_OPENROUTER_API_KEY: ${{ secrets.VITE_OPENROUTER_API_KEY }}
 
       - run: cp dist/index.html dist/404.html
 

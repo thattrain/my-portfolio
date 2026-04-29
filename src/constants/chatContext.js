@@ -16,7 +16,7 @@ SKILLS: LangGraph, LangChain, LangFuse | Spring Boot, Java, Multithreading | Kaf
 HOBBIES: Tennis (keeps active, sharpens competitive spirit), Classical music (helps focus, finds calm in complexity of composition).
 
 Q&A:
-- Currently working on: Data Engineering & AI at SAP SuccessFactors.
+- Currently working on: Software Engineering & AI at SAP SuccessFactors.
 - Strongest area: Backend architecture & data engineering — high-throughput Java services and event-driven systems with Kafka.
 - Contact: LinkedIn https://www.linkedin.com/in/dat-tran-b7197923a/`,
 };

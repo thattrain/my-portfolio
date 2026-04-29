@@ -14,7 +14,7 @@ const BlogListPage = () => {
       : allPosts.filter((p) => p.frontmatter.tags.includes(activeTag));
 
   return (
-    <main className="min-h-screen flex flex-col pt-32 pb-20 px-5 md:px-10">
+    <main className="min-h-screen flex flex-col pt-32 px-5 md:px-10">
       <div className="max-w-[700px] mx-auto flex-1">
         <div className="mb-12">
           <h1 className="font-semibold md:text-5xl text-3xl text-white mb-4">

@@ -59,7 +59,7 @@ const BlogPostPage = () => {
           <h1 className="font-semibold md:text-4xl text-2xl text-white mb-4">{title}</h1>
 
           <div className="flex items-center gap-3 text-sm text-[#839cb5] mb-12">
-            <time>{formattedDate}</time>
+            <time dateTime={date}>{formattedDate}</time>
             <span>&middot;</span>
             <span>{readingTime(post.html)}</span>
           </div>

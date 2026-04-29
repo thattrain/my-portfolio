@@ -13,6 +13,7 @@ const interests = [
     media: [
       { type: "video", src: `${import.meta.env.BASE_URL}videos/tennis.mp4` },
       { type: "video", src: `${import.meta.env.BASE_URL}videos/tennis2.mp4` },
+      { type: "video", src: `${import.meta.env.BASE_URL}videos/tennis3.mp4` },
     ],
   },
   {
