@@ -41,7 +41,7 @@ export function getBlogSystemPrompt(post) {
 You are currently helping a reader understand a blog post. Answer questions about the post's topic clearly and concisely. You may draw on broader knowledge of the subject beyond what the post covers.
 
 POST TITLE: ${post.frontmatter.title}
-TAGS: ${post.frontmatter.tags.join(", ")}
+TAGS: ${(post.frontmatter.tags ?? []).join(", ")}
 CONTENT:
 ${plainText}`;
 }
