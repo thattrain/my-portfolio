@@ -1,7 +1,6 @@
 import { useParams, Link } from "react-router";
 import { getPostBySlug, getAdjacentPosts, readingTime } from "../utils/blog";
 import MarkdownRenderer from "../components/MarkdownRenderer";
-import BlogChatPanel from "../components/BlogChatPanel";
 import ChatWidget from "../components/ChatWidget";
 import Footer from "../sections/Footer";
 import { getBlogSystemPrompt } from "../constants/chatContext";
@@ -38,8 +37,8 @@ const BlogPostPage = () => {
 
   return (
     <main className="min-h-screen flex flex-col pt-32 pb-20 px-5 md:px-10">
-      <div className="flex gap-8 items-start max-w-[1100px] mx-auto w-full flex-1">
-        <article className="flex-1 min-w-0">
+      <div className="max-w-[700px] mx-auto w-full flex-1">
+        <article>
           <Link
             to="/blog"
             className="inline-flex items-center text-[#839cb5] hover:text-white transition-colors mb-8"
@@ -87,20 +86,12 @@ const BlogPostPage = () => {
             </div>
           </nav>
         </article>
-
-        <BlogChatPanel
-          systemPrompt={blogSystemPrompt}
-          storageKey={blogStorageKey}
-          welcomeMessage={blogWelcomeMessage}
-        />
       </div>
 
-      {/* Mobile floating bubble — hidden on desktop where BlogChatPanel is shown */}
       <ChatWidget
         systemPrompt={blogSystemPrompt}
         storageKey={blogStorageKey}
         welcomeMessage={blogWelcomeMessage}
-        className="lg:hidden"
       />
 
       <Footer />

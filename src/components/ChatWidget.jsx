@@ -25,7 +25,7 @@ export default function ChatWidget({ systemPrompt, storageKey, welcomeMessage, c
   const [input, setInput] = useState("");
   const [isStreaming, setIsStreaming] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
-  const messagesEndRef = useRef(null);
+  const messagesContainerRef = useRef(null);
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -47,7 +47,10 @@ export default function ChatWidget({ systemPrompt, storageKey, welcomeMessage, c
   }, [messages, storageKey]);
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    const container = messagesContainerRef.current;
+    if (container) {
+      container.scrollTop = container.scrollHeight;
+    }
   }, [messages]);
 
   useEffect(() => {
@@ -186,8 +189,8 @@ export default function ChatWidget({ systemPrompt, storageKey, welcomeMessage, c
     <div
       className={`fixed bottom-6 right-6 z-50 flex flex-col max-sm:bottom-2 max-sm:right-2 max-sm:left-2 ${className}`}
       style={{
-        width: "380px",
-        height: "500px",
+        width: "420px",
+        height: "560px",
         maxWidth: "calc(100vw - 16px)",
         maxHeight: "70vh",
         background: "#0d1a2e",
@@ -223,11 +226,11 @@ export default function ChatWidget({ systemPrompt, storageKey, welcomeMessage, c
         >✕</button>
       </div>
 
-      <div className="flex-1 overflow-y-auto flex flex-col gap-2.5 p-4">
+      <div ref={messagesContainerRef} className="flex-1 overflow-y-auto flex flex-col gap-2.5 p-4">
         {displayMessages.map((msg, i) => (
           <div
             key={i}
-            className={`max-w-[85%] px-3.5 py-2.5 text-[13px] leading-relaxed ${msg.role === "user" ? "self-end" : "self-start"}`}
+            className={`max-w-[85%] px-3.5 py-2.5 text-[14px] leading-relaxed ${msg.role === "user" ? "self-end" : "self-start"}`}
             style={{
               background: msg.role === "user" ? "linear-gradient(135deg, #003580, #4A90D9)" : "#1a2540",
               color: msg.role === "user" ? "white" : "#d9ecff",
@@ -240,10 +243,9 @@ export default function ChatWidget({ systemPrompt, storageKey, welcomeMessage, c
             )}
           </div>
         ))}
-        <div ref={messagesEndRef} />
       </div>
 
-      <div className="flex gap-2 items-center shrink-0" style={{ padding: "12px 14px", borderTop: "1px solid rgba(74, 144, 217, 0.2)" }}>
+      <div className="flex gap-2 items-center shrink-0" style={{ padding: "12px 14px", borderTop: "1px solid rgba(74, 144, 217, 0.2)", boxShadow: "0 -4px 12px rgba(0,0,0,0.3)" }}>
         <input
           ref={inputRef}
           type="text"
@@ -252,7 +254,7 @@ export default function ChatWidget({ systemPrompt, storageKey, welcomeMessage, c
           onKeyDown={handleKeyDown}
           placeholder="Type a message..."
           disabled={isStreaming}
-          className="flex-1 text-[13px] outline-none disabled:opacity-50"
+          className="flex-1 text-[14px] outline-none disabled:opacity-50"
           style={{ background: "#0a0f1e", border: "1px solid rgba(74, 144, 217, 0.3)", borderRadius: "10px", padding: "10px 14px", color: "#d9ecff" }}
         />
         <button
