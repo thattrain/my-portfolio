@@ -47,11 +47,12 @@ export default function ChatWidget({ systemPrompt, storageKey, welcomeMessage, c
   }, [messages, storageKey]);
 
   useEffect(() => {
+    if (!isOpen) return;
     const container = messagesContainerRef.current;
     if (container) {
       container.scrollTop = container.scrollHeight;
     }
-  }, [messages]);
+  }, [messages, isOpen]);
 
   useEffect(() => {
     if (isOpen && inputRef.current) {

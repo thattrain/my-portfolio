@@ -37,8 +37,7 @@ const BlogPostPage = () => {
 
   return (
     <main className="min-h-screen flex flex-col pt-32 pb-20 px-5 md:px-10">
-      <div className="max-w-[700px] mx-auto w-full flex-1">
-        <article>
+      <article className="max-w-[700px] mx-auto w-full flex-1">
           <Link
             to="/blog"
             className="inline-flex items-center text-[#839cb5] hover:text-white transition-colors mb-8"
@@ -85,8 +84,7 @@ const BlogPostPage = () => {
               )}
             </div>
           </nav>
-        </article>
-      </div>
+      </article>
 
       <ChatWidget
         systemPrompt={blogSystemPrompt}
