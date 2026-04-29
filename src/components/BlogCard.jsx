@@ -11,7 +11,7 @@ const BlogCard = ({ post }) => {
 
   return (
     <article className="py-8 border-b border-[#282732] group">
-      <div className="flex gap-6">
+      <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
         {thumbnail && (
           <Link to={`/blog/${post.slug}`} className="shrink-0">
             <img
@@ -22,7 +22,7 @@ const BlogCard = ({ post }) => {
           </Link>
         )}
         <div className="flex-1">
-          <div className="flex items-center justify-between mb-3">
+          <div className="flex flex-wrap items-center justify-between gap-y-1 mb-3">
             <time dateTime={date} className="text-sm text-[#839cb5]">{formattedDate}</time>
             <div className="flex gap-2">
               {tags.map((tag) => (

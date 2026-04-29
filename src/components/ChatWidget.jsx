@@ -277,7 +277,7 @@ export default function ChatWidget({ systemPrompt, storageKey, welcomeMessage, c
         <button
           onClick={handleSend}
           disabled={isStreaming || !input.trim()}
-          className="w-9 h-9 flex items-center justify-center shrink-0 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-11 h-11 flex items-center justify-center shrink-0 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
           style={{ background: "linear-gradient(135deg, #4A90D9, #003580)", borderRadius: "10px" }}
           aria-label="Send message"
         >

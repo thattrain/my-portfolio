@@ -59,7 +59,7 @@ const ShowcaseSection = () => {
         <div className="grid md:grid-cols-2 grid-cols-1 gap-8 mt-16">
           {/* Tennis */}
           <div className="interest-card relative card-border rounded-2xl overflow-hidden hover:scale-[1.02] transition-transform duration-300">
-            <MediaGallery media={interests[0].media} className="w-full h-[52rem]" />
+            <MediaGallery media={interests[0].media} className="w-full h-96 sm:h-[40rem] lg:h-[52rem]" />
             <div className="absolute top-0 inset-x-0 px-8 py-7 bg-gradient-to-b from-black/70 to-transparent z-30 pointer-events-none">
               <h3 className="text-2xl font-semibold text-white">Tennis</h3>
               <p className="text-white/60 leading-relaxed mt-2 text-sm max-w-xs">
@@ -70,7 +70,7 @@ const ShowcaseSection = () => {
 
           {/* Classical Music */}
           <div className="interest-card relative card-border rounded-2xl overflow-hidden hover:scale-[1.02] transition-transform duration-300">
-            <MediaGallery media={interests[1].media} className="w-full h-[52rem]" />
+            <MediaGallery media={interests[1].media} className="w-full h-96 sm:h-[40rem] lg:h-[52rem]" />
             <div className="absolute top-0 inset-x-0 px-8 py-7 bg-gradient-to-b from-black/70 to-transparent z-30 pointer-events-none">
               <h3 className="text-2xl font-semibold text-white">Classical Music</h3>
               <p className="text-white/60 leading-relaxed mt-2 text-sm max-w-xs">
