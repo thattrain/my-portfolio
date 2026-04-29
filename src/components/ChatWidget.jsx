@@ -230,7 +230,7 @@ export default function ChatWidget({ systemPrompt, storageKey, welcomeMessage, c
         {displayMessages.map((msg, i) => (
           <div
             key={i}
-            className={`max-w-[85%] px-3.5 py-2.5 text-[14px] leading-relaxed ${msg.role === "user" ? "self-end" : "self-start"}`}
+            className={`max-w-[85%] px-4 py-3 text-[14px] leading-relaxed ${msg.role === "user" ? "self-end" : "self-start"}`}
             style={{
               background: msg.role === "user" ? "linear-gradient(135deg, #003580, #4A90D9)" : "#1a2540",
               color: msg.role === "user" ? "white" : "#d9ecff",
