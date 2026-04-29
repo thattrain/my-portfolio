@@ -14,7 +14,7 @@ function getStoredMessages(storageKey) {
   try {
     const stored = sessionStorage.getItem(storageKey);
     return stored ? JSON.parse(stored) : [];
-  } catch {
+  } catch { /* sessionStorage unavailable */
     return [];
   }
 }
@@ -43,7 +43,7 @@ export default function ChatWidget({ systemPrompt, storageKey, welcomeMessage, c
   useEffect(() => {
     try {
       sessionStorage.setItem(storageKey, JSON.stringify(messages));
-    } catch {}
+    } catch { /* sessionStorage unavailable */ }
   }, [messages, storageKey]);
 
   useEffect(() => {
@@ -121,7 +121,7 @@ export default function ChatWidget({ systemPrompt, storageKey, welcomeMessage, c
               assistantContent += token;
               setMessages([...updatedMessages, { role: "assistant", content: assistantContent }]);
             }
-          } catch {}
+          } catch { /* malformed SSE line — skip */ }
         }
       }
 
